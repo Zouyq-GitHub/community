@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyq.mapper.UserMapper">
+    <select id="adminById" resultType="com.zyq.pojo.User">
+        SELECT *
+        from user
+        where id = #{id}
+    </select>
+
+    <!--根据ID查询帖子-->
+    <select id="queryInvitation" resultType="com.zyq.pojo.Quiz">
+        SELECT *
+        from quiz
+        where userId = #{id}
+    </select>
+
+    <!--根据id查询回复-->
+    <select id="queryAnswer" resultType="com.zyq.pojo.Answer">
+        SELECT
+            answer.answer,
+            quiz.quiz,
+            answer.time
+        FROM
+            answer
+                INNER JOIN quiz ON quiz.id = answer.quizId
+        WHERE
+            answer.userId = #{id}
+    </select>
+</mapper>
